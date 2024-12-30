@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Breast Cancer Predictor</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   
+    <div class="head">
+        <h1>Breast Cancer Predictor</h1>
+        
+    </div>
+
+
+    <div class="main">
+        <div class="mission">
+            <div class="container">
+                 <h2>Our Mission</h2>
+                 <img src="static/logo.png" alt="">
+                 <p>Our mission is to provide a platform that can predict the likelihood of a <br> patient having breast cancer based on the data provided by the patient.</p>
+            </div>
+         </div>
+     
+         <div class="predictor">
+             <h2>Predictor</h2>
+             <form method="post" action="{{ url_for('predict') }}">
+                 <div class="question active" id="btn-1">
+                     <label>1. How large is the lump/tumor? (1 = very small, 10 = very large):</label>
+                     <input type="number" name="feature1" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(1)">Next</button>
+                 </div>
+                 
+                 <div class="question" id="btn-2">
+                     <label>2. How rough or uneven does the tumor feel? (1 = smooth, 10 = rough):</label>
+                     <input type="number" name="feature2" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(2)">Next</button>
+                 </div>
+                 
+                 <div class="question" id="btn-3">
+                     <label>3. How compact or dense is the tumor? (1 = soft, 10 = compact and hard):</label>
+                     <input type="number" name="feature3" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(3)">Next</button>
+                 </div>
+                 
+                 <div class="question" id="btn-4">
+                     <label>4. How symmetric is the tumor? (1 = symmetric, 10 = highly asymmetric):</label>
+                     <input type="number" name="feature4" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(4)">Next</button>
+                 </div>
+                 
+                 <div class="question" id="btn-5">
+                     <label>5. How much has the lump/tumor grown or changed over time? (1 = no change, 10 = rapid growth):</label>
+                     <input type="number" name="feature5" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(5)">Next</button>
+                 </div>
+     
+                 <div class="question" id="btn-6">
+                     <label>6. How much does the texture vary? (1 = consistent, 10 = highly variable):</label>
+                     <input type="number" name="feature6" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(6)">Next</button>
+                 </div>
+     
+                 <div class="question" id="btn-7">
+                     <label>7. How much does the compactness/density vary? (1 = consistent, 10 = highly variable):</label>
+                     <input type="number" name="feature7" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(7)">Next</button>
+                 </div>
+                 
+                 <div class="question" id="btn-8">
+                     <label>8. How much does symmetry change between measurements? (1 = stable, 10 = highly variable):</label>
+                     <input type="number" name="feature8" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(8)">Next</button>
+                 </div>
+     
+                 <div class="question" id="btn-9">
+                     <label>9. How noticeable are the indentations on the tumor? (1 = flat, 10 = highly concave):</label>
+                     <input type="number" name="feature9" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(9)">Next</button>
+                 </div>
+     
+                 <div class="question" id="btn-10">
+                     <label>10. How irregular is the tumor in shape and boundary? (1 = smooth, 10 = highly irregular):</label>
+                     <input type="number" name="feature10" min="1" max="10" required><br>
+                     <button type="button" onclick="nextQuestion(10)">Next</button>
+                 </div>
+                 
+                 <button type="submit">Predict</button>
+             </form>
+         </div>
+    </div>
+    
+
+    <script>
+        function nextQuestion(current) {
+            document.getElementById(`btn-${current}`).classList.remove('active');
+            document.getElementById(`btn-${current + 1}`).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
