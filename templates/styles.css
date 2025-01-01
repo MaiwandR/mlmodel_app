@@ -11,6 +11,7 @@ body{
 
 .question {
     display: none;
+    flex-direction: column;
     text-align: center;
     margin-top: 20%;
     margin-bottom: 20%;
@@ -19,10 +20,11 @@ body{
     color: #252525;
 }
 .question.active {
-    display: block;
+    display: flex;
 }
 
 .question input{
+   margin-top: 15px;
     font-size: 30px;
 }
 
@@ -44,6 +46,8 @@ body{
     transform: scale(1.01);
     box-shadow: 7px 10px  #bf3900;
 }
+
+
 
 .head {
     display: flex;
@@ -118,17 +122,19 @@ padding: 10px;
     font-weight: bold;
     color: #252525;
     padding-top: 20px;
+    text-align: center;
 }
 
 .predictor {
     display: flex;
     align-items: center;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     border: 5px solid #752300;
     border-radius: 50px;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 25px;
     margin: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -138,8 +144,15 @@ padding: 10px;
     box-shadow: 10px 10px  #752300;
 }
 
+.predictor p {
+    font-size: 24px;
+    font-weight:700;
+    color: #252525;
+    
+}
+
 .predictor h2{
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 700;
     color: #ffffff;
     border: 5px solid #752300;
@@ -157,3 +170,138 @@ padding: 10px;
 
 
 
+.predictor-inner {
+    display:block;
+    width: 1000px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 5px solid #752300;
+    border-radius: 50px;
+    background-color: rgb(255, 181, 90);
+    padding: 10px;
+    margin: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.predictor-inner input{
+    display: inline;
+    width: 700px;
+    align-self: center;
+    border-radius: 30px;
+    border: 5px solid #752300;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.predictor-inner input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+.predictor-inner label{
+    font-size: 30px;
+    font-weight: 700;
+    color: #4d1700;
+    padding: 10px;
+}
+
+.predictor-inner:hover{
+    transform: scale(1.01);
+    box-shadow: 10px 10px  #752300;
+}
+
+.prediction-box {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 3px;  
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    max-width: 700px;
+    border: 5px solid #5a2c1d;
+    border-radius: 20px;
+    background-color: #fdf2f2;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.prediction-box h3 {
+    font-size: 26px;
+    color: #5a2c1d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.prediction-box p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin: 5px 0;
+    color: #333333;
+}
+
+/* Fix container positioning to relative for absolute positioning to work */
+.container1 {
+    position: relative;
+    min-height: 600px;  /* Ensures enough space for questions and result */
+    padding-bottom: 120px;  /* Space for prediction box */
+}
+
+
+/* Loading */
+/* From Uiverse.io by TheAbieza */ 
+.load {
+   align-self: center;
+    gap: 10px;
+    margin: -100px;
+    margin-bottom: -50px;
+  }
+  
+  .folder {
+    width: min-content;
+    margin: auto;
+    animation: float 2s infinite linear;
+  }
+  
+  .folder .top {
+    background-color: #FF8F56;
+    width: 200px;
+    height: 48px;
+    border-top-right-radius: 10px;
+  }
+  
+  .folder .bottom {
+    background-color: #ffdb8c;
+    width: 500px;
+    height: 300px;
+    box-shadow: 10px 10px 0 0 #672200;
+    border-top-right-radius: 8px;
+  }
+  
+  .load .title {
+    font-size: .9em;
+    color: #451700;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+  
+    50% {
+      transform: translatey(-25px);
+    }
+  
+    100% {
+      transform: translatey(0px);
+    }
+  }
+  
+  
