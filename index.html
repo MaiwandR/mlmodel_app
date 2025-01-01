@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Breast Cancer Predictor</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   
+    <div class="head">
+        <h1>Breast Cancer Predictor</h1>
+        
+    </div>
+
+
+    <div class="main">
+        <div class="mission">
+            <div class="container">
+                 <h2>Our Mission</h2>
+                 <img src="static/logo.png" alt="">
+                 <p>  ClearPath is here to offer gentle and reliable early detection, 
+                    helping to identify whether breast cancer is benign or malignant. 
+                    We know the fear that comes with uncertainty, and our goal is to 
+                    bring clarity, comfort, and hope. 
+                    By supporting early awareness, ClearPath helps individuals take the 
+                    first step toward peace of mind and the care they deserve.</p>
+            </div>
+         </div>
+     
+         <div class="predictor">
+            <h2>Predictor</h2>
+            <p> In this questionnaire, we will ask you 10 simple questions about the tumor or lump you are 
+               experiencing to help determine if <br> the breast cancer is malignant (M) or benign (B).
+               Please answer all questions as accurately as possible using a scale from 1 to 10, <br>and feel 
+               free to use decimal values (e.g., 7.5) where necessary. If you are unsure about any question, 
+               provide the best estimate based <br>on the information you have. Your responses will be analyzed 
+               by our system to provide insights and predictions regarding the nature of <br>the tumor.
+            </p>
+
+
+
+         <div class="predictor-inner">
+             <form method="post" action="{{ url_for('predict') }}">
+                <div class ="container1">
+                 <div class="question active" id="btn-1">
+                     <label>1. How large is the lump/tumor?</label>
+                     <input type="text" name="feature1" min="1" max="10" required placeholder="1 = very small, 10 = very large"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="validateAndNext(1)">Next</button>
+                    </div>
+                    </div>
+                 <div class="question" id="btn-2">
+                     <label>2. How rough or uneven does the tumor feel?</label>
+                     <input type="text" name="feature2" min="1" max="10" required placeholder="1 = smooth, 10 = rough"><br>
+                    <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(2)">Previous</button>
+                        <button type="button" onclick="validateAndNext(2)">Next</button>
+                    </div>
+                    </div>
+                
+                 
+                 <div class="question" id="btn-3">
+                     <label>3. How compact or dense is the tumor?</label>
+                     <input type="text" name="feature3" min="1" max="10" required placeholder="1 = soft, 10 = compact and hard"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(3)">Previous</button>
+                        <button type="button" onclick="validateAndNext(3)">Next</button>
+                    </div>
+                 </div>
+                 
+                 <div class="question" id="btn-4">
+                     <label>4. How symmetric is the tumor?</label>
+                     <input type="text" name="feature4" min="1" max="10" required placeholder="1 = symmetric, 10 = highly asymmetric"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(4)">Previous</button>
+                        <button type="button" onclick="validateAndNext(4)">Next</button>
+                    </div>
+                 </div>
+
+                 <div class="question" id="btn-5">
+                     <label>5. How much has the lump/tumor grown or changed over time?</label>
+                     <input type="text" name="feature5" min="1" max="10" required  placeholder="1 = no change, 10 = rapid growth"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(5)">Previous</button>
+                        <button type="button" onclick="validateAndNext(5)">Next</button>
+                    </div>
+                 </div>
+     
+                 <div class="question" id="btn-6">
+                     <label>6. How much does the texture vary?</label>
+                     <input type="text" name="feature6" min="1" max="10" placeholder= "1 = consistent, 10 = highly variable" required><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(6)">Previous</button>
+                        <button type="button" onclick="validateAndNext(6)">Next</button>
+                    </div>
+                 </div>
+
+                 <div class="question" id="btn-7">
+                     <label>7. How much does the compactness/density vary?</label>
+                     <input type="text" name="feature7" min="1" max="10" required placeholder="1 = consistent, 10 = highly variable"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(7)">Previous</button>
+                        <button type="button" onclick="validateAndNext(7)">Next</button>
+                    </div>
+                 </div>
+                 
+                 <div class="question" id="btn-8">
+                     <label>8. How much does symmetry change between measurements? :</label>
+                     <input type="text" name="feature8" min="1" max="10" required placeholder="1 = stable, 10 = highly variable"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(8)">Previous</button>
+                        <button type="button" onclick="validateAndNext(8)">Next</button>
+                    </div>
+                 </div>
+     
+                 <div class="question" id="btn-9">
+                     <label>9. How noticeable are the indentations on the tumor?</label>
+                     <input type="text" name="feature9" min="1" max="10" required placeholder="1 = flat, 10 = highly concave"><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(9)">Previous</button>
+                        <button type="button" onclick="validateAndNext(9)">Next</button>
+                    </div>
+                 </div> 
+     
+                 <div class="question" id="btn-10">
+                     <label>10. How irregular is the tumor in shape and boundary?</label>
+                     <input type="text" name="feature10" min="1" max="10" placeholder="1 = smooth, 10 = highly irregular"required><br>
+                     <div class = "buttons">
+                        <button type="button" onclick="previousQuestion(10)">Previous</button>
+                        <button type="button" onclick="validateAndNext(10)">Next</button>
+                    </div>
+                 </div>
+
+                 
+                 <!-- Predict Button (Hidden Until Question 10) -->
+                <div class="question" id="predict-btn" style="display:none;">
+                   
+                    <!-- Loading Image -->
+                  
+                    <div class="load">
+                        <div class="folder">
+                          <div class="top"></div>
+                          <div class="bottom"></div>
+                        </div>
+                        <div class="title">getting files ready...</div>
+                      </div>
+
+                   
+                    <div class = "center-text">
+                    <div class="button-group">
+                        <button type="button" onclick="previousQuestion(11)">Previous</button>
+                        <button type="submit">Predict</button>
+                    </div>
+                    </div>
+                </div>
+
+               
+
+        
+             </form>
+
+              <!-- Prediction Result Section (Now Fixed) -->
+              <div id="prediction-result" class="prediction-box" style="display:none;">
+                <h3>Prediction Result:</h3>
+                <p id="prediction-text"></p>
+            </div>
+            
+         </div>
+    </div>
+    
+
+    <script>
+        function validateAndNext(current) {
+            const input = document.querySelector(`#btn-${current} input`);
+            const value = parseFloat(input.value);
+    
+            if (value >= 1 && value <= 10) {
+                if (current === 10) {
+                    showPredict();
+                } else {
+                    nextQuestion(current);
+                }
+            } else {
+                alert("Please enter a valid value between 1 and 10. Decimal values are accepted.");
+            }
+        }
+    
+        function nextQuestion(current) {
+            document.getElementById(`btn-${current}`).classList.remove('active');
+            document.getElementById(`btn-${current + 1}`).classList.add('active');
+        }
+    
+        function previousQuestion(current) {
+            if (current === 11) { // Handle going back from the predict button
+                document.getElementById('predict-btn').style.display = 'none';
+                document.getElementById('btn-10').classList.add('active');
+            } else {
+                document.getElementById(`btn-${current}`).classList.remove('active');
+                document.getElementById(`btn-${current - 1}`).classList.add('active');
+            }
+        }
+    
+        function showPredict() {
+        document.getElementById('btn-10').classList.remove('active');
+        document.getElementById('predict-btn').style.display = 'block';
+        document.getElementById('prediction-result').style.display = 'block';
+    }
+    
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const prediction = "{{ prediction }}";
+            const resultDiv = document.getElementById('prediction-result');
+            const resultText = document.getElementById('prediction-text');
+    
+            if (prediction) {
+                if (prediction == '1' || prediction == 'M') {
+                    resultText.innerHTML = `<strong style="color: red;">The tumor is predicted to be Malignant (M).</strong>`;
+                } else {
+                    resultText.innerHTML = `<strong style="color: green;">The tumor is predicted to be Benign (B).</strong>`;
+                }
+    
+                resultDiv.style.display = 'block';
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+
+</body>
+</html>
