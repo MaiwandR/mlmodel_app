@@ -29,11 +29,11 @@
          <div class="predictor">
             <h2>Predictor</h2>
             <p> In this questionnaire, we will ask you 10 simple questions about the tumor or lump you are 
-               experiencing to help determine if <br> the breast cancer is malignant (M) or benign (B).
-               Please answer all questions as accurately as possible using a scale from 1 to 10, <br>and feel 
+               experiencing to help determine if the breast cancer is malignant (M) or benign (B).
+               Please answer all questions as accurately as possible using a scale from 1 to 10, and feel 
                free to use decimal values (e.g., 7.5) where necessary. If you are unsure about any question, 
-               provide the best estimate based <br>on the information you have. Your responses will be analyzed 
-               by our system to provide insights and predictions regarding the nature of <br>the tumor.
+               provide the best estimate based on the information you have. Your responses will be analyzed 
+               by our system to provide insights and predictions regarding the nature of the tumor.
             </p>
 
 
@@ -148,7 +148,7 @@
                     <div class = "center-text">
                     <div class="button-group">
                         <button type="button" onclick="previousQuestion(11)">Previous</button>
-                        <button type="submit">Predict</button>
+                        <button id="submit-btn" type="submit">Predict</button>
                     </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
              </form>
 
               <!-- Prediction Result Section (Now Fixed) -->
-              <div id="prediction-result" class="prediction-box" style="display:none;">
+              <div id="prediction-result" class="prediction-box"">
                 <h3>Prediction Result:</h3>
                 <p id="prediction-text"></p>
             </div>
@@ -202,26 +202,41 @@
         function showPredict() {
         document.getElementById('btn-10').classList.remove('active');
         document.getElementById('predict-btn').style.display = 'block';
-        document.getElementById('prediction-result').style.display = 'block';
+       
     }
     
     
-        document.addEventListener("DOMContentLoaded", function() {
-            const prediction = "{{ prediction }}";
+    document.getElementById('predict-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally.
+    
+        const formData = new FormData(document.querySelector('form')); // Collect form data.
+    
+        fetch('{{ url_for("predict") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) // Expecting JSON response from Flask.
+        .then(data => {
             const resultDiv = document.getElementById('prediction-result');
             const resultText = document.getElementById('prediction-text');
     
-            if (prediction) {
-                if (prediction == '1' || prediction == 'M') {
+            if (data.prediction) {
+                resultDiv.style.display = 'block'; // Show the result div.
+    
+                if (data.prediction === 'M') {
                     resultText.innerHTML = `<strong style="color: red;">The tumor is predicted to be Malignant (M).</strong>`;
                 } else {
                     resultText.innerHTML = `<strong style="color: green;">The tumor is predicted to be Benign (B).</strong>`;
                 }
-    
-                resultDiv.style.display = 'block';
-                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Error: Could not determine prediction. Please try again.");
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("An error occurred while predicting. Please try again.");
         });
+    });
     </script>
 
 </body>

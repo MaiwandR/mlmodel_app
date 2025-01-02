@@ -211,6 +211,10 @@ padding: 10px;
     box-shadow: 10px 10px  #752300;
 }
 
+#prediction-result{
+    display: none;
+}
+
 .prediction-box {
     display: none;
     flex-direction: column;
